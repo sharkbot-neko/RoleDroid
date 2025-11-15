@@ -1,4 +1,4 @@
-const { Client, Events, GatewayIntentBits, MessageFlags, ChannelType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Colors, SlashCommandBuilder, PermissionFlagsBits, REST, Routes, ButtonStyle } = require('discord.js');
+const { Client, Events, GatewayIntentBits, MessageFlags, ChannelType, EmbedBuilder, ActionRowBuilder, ButtonBuilder, Colors, SlashCommandBuilder, PermissionFlagsBits, REST, Routes, ButtonStyle, ActivityType } = require('discord.js');
 const { token, clientid } = require('./config.json');
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
@@ -45,7 +45,12 @@ client.on(Events.ClientReady, async () => {
         { body: data },
     );
 
-    console.log('起動しました。')
+    await client.user.setActivity({ 
+        name: 'ロール管理Botです',
+        type: ActivityType.Custom
+    });
+
+    console.log('起動しました。');
 })
 
 client.on(Events.InteractionCreate, async (interaction) => {
